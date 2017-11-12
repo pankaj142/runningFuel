@@ -5,13 +5,17 @@
 	}
 </style>
     <div id="detail">
-        <h2>Petrol Pump Detail</h2>
-        <p>Name:</p>
-        {{petrolDetail.name}}
-        <p>Address:</p>
-        {{petrolDetail.addr}}
-        <br>
-        <button type="button" class="btn btn-primary" ng-click="buyPetrol(petrolDetail)">Buy Petrol</button>
+        <h3>Petrol Pump Detail</h3>
+        <p>{{petrolDetail.name}}</p>
+        <p>{{petrolDetail.addr}}</p>
+        <br/>
+        <br/>
+        <p>Fuel Quata - 1Lr.</p>
+        <p>Fuel Cost - 80Rs.</p>
+        <p>Delivery Charges - 20Rs.</p>
+        <p>Note - Receipt of your request will be sent to nearest police station.</p>
+        <p>Note - Please fill the fuel at nearest petrol pump.</p>
+        <button type="button" class="btn btn-primary" ng-click="buyPetrol(petrolDetail)">Order Fuel</button>
         
         
     </div>

@@ -64,9 +64,19 @@
                 controller  : 'mapDetailController'
            	  })
 
-              .when('/provider', {
-                templateUrl : 'pages/provider.html',
-                controller  : 'providerController'
+              .when('/providerlist', {
+                templateUrl : 'pages/providerList.html',
+                controller  : 'providerListController'
+              })
+
+              .when('/providerlogin', {
+                templateUrl : 'pages/providerlogin.html',
+                controller  : 'providerLoginController'
+              })
+
+              .when('/providerregister', {
+                templateUrl : 'pages/providerregister.html',
+                controller  : 'providerRegisterController'
               }); 
          /*	var path;
          	if(localStorage.getItem("loginStatus")==true){
@@ -253,4 +263,57 @@
 
         app.controller("providerController",function($scope){
             $scope.msg="this is provider controller"
+        })
+
+        app.controller("providerController",function($scope){
+            $scope.getList= function(){
+
+            }
+        })
+
+        app.controller("providerLoginController", function($scope,$http,$location){
+            $scope.msg="this is providerLoginController";
+            $scope.providerlogin=function(){
+                var email= document.getElementById('email').value;
+                var password =document.getElementById('password').value;
+
+            var providerLoginData={
+                email:email,
+                password:password
+            }
+
+            console.log(providerLoginData)
+
+            $http
+                .post('/api/provider/login', providerLoginData)
+                .then(function(){
+                    //console.log(response)
+                    $location.path('/providerlist');
+                    console.log("user providerLoginData data is send to server");
+                    localStorage.setItem("providerEmail",providerLoginData.email)    
+                });
+
+            }
+           // $location.path('/providerlist');
+        })
+
+        app.controller("providerRegisterController",function($scope,$http){
+            $scope.msg="this is providerRegisterController";
+        })
+
+        app.controller("providerListController",function($scope,$http,$rootScope){
+            
+            var providerEmail=localStorage.getItem("providerEmail")
+            var data=providerEmail+"zzzz"+"Survey No. - 274, Baner Road, Near Mauli Garden, Pune";
+            $scope.getList= function(){
+                $http
+                    .get('api/provider/reguestlist/'+data)
+                    .then(function(response){
+                        console.log(response.data)
+                        $rootScope.requestList=response.data;
+                        //console.log(response.data[0])
+                    })
+
+            }
+           
         })

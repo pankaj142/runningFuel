@@ -1,0 +1,19 @@
+<!-- home.html -->
+
+    <div class="jumbotron text-center">
+        <h3>Today's Order</h3>
+        	
+        	<button type="button" class="btn btn-primary" ng-click="getList()">Today's Fuel Order</button>
+
+        	<ul class="list-group" ng-repeat="x in requestList">
+			  <li class="list-group-item">Name: {{x.username}}	<br>
+			  	Adhar Number:{{x.adharNumber}}<br>
+			  	Licence Number:{{x.licenceNumber}}
+			  
+				</li>
+			  
+			</ul>
+
+       
+        
+    </div>

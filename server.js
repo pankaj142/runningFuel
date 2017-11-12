@@ -33,14 +33,26 @@ var RequestSchema = mongoose.Schema({
 },{collection:'Requests'}  // it will force db to save this model as collection called as 'post'
 );
 
+var ProviderLoginSchema = mongoose.Schema({
+    email:String,
+    password:String
+    
+},{collection:'providerLoginData'}  // it will force db to save this model as collection called as 'post'
+);
+
 var UserRegModel = mongoose.model('UserRegModel', UserRegSchema);
 var RequestModel = mongoose.model('RequestModel', RequestSchema);
+var ProviderLoginModel = mongoose.model('ProviderLoginModel', ProviderLoginSchema);
 
+//user apis
 app.post('/api/register',userRegister);
 app.get('/api/login/:data',userLogin);
 app.post('/api/requestData',storeRequests);
 
 //app.get('api/getUserInfo/:id',getUserData);
+//provider apis
+app.post('/api/provider/login',providerLogin);
+app.get('/api/provider/reguestlist/:data',fetchRequests)
 
 
 
@@ -51,6 +63,39 @@ app.delete('/api/blogpost/:id', deletePost);
 app.get('/api/blogpost/:id', getPostById);
 app.put('/api/blogpost/:id', updatePost);
 
+function fetchRequests(req,res){
+    var data=req.params.data;
+
+    console.log(req.params.data);
+    console.log(req.params.data.split("zzzz"));
+    var userLoginData=req.params.data.split("zzzz");
+    RequestModel
+        .find({petrolPumbAddr:userLoginData[1]})
+        .then(
+            function(userData){    //on success
+                var userId=userData.data;
+                res.json(userData);   // 200-http OK status
+            },
+            function(err){       //on failure
+                res.sendStatus(400); //400-http unsuccessful req
+            }
+        );
+}
+
+function providerLogin(req,res){
+    var data = req.body;
+    console.log(data); 
+    ProviderLoginModel
+        .create(data)
+        .then(
+            function(postObj){    //on success
+                res.json(200);   // 200-http OK status
+            },
+            function(err){       //on failure
+                res.sendStatus(400); //400-http unsuccessful req
+            }
+        );
+}
 
 function storeRequests(req,res){
     var request = req.body;

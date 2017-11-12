@@ -36,7 +36,7 @@ var map;
                 });
                 var request = {
                     location: messiah,
-                    radius: 5000,
+                    radius: 15000,
                     type: ['gas_station']
                 }
                 service = new google.maps.places.PlacesService(map);
