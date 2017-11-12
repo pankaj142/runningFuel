@@ -1,0 +1,20 @@
+{
+  "name": "meanblog",
+  "version": "1.0.0",
+  "description": "blog mean app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mean",
+    "app"
+  ],
+  "author": "pankaj",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.10.6"
+  }
+}

@@ -1,0 +1,24 @@
+<!-- getPetrol.html -->
+    <div class="jumbotron text-center">
+        <h1>getPetrol Page</h1>
+        
+       
+        <button type="button" class="btn btn-group btn-secondary" ng-click="mapfun()">map</button>
+    	<ul class="list-group" ng-repeat="x in petrolPumbs">
+
+
+		  <li class="list-group-item">{{x.name}}
+		  		<button type="button" class="btn btn-group btn-secondary"
+		  		ng-click="detail(x)">Detail</button>
+		  
+			</li>
+		  
+		</ul>
+        
+        <button type="button" class="btn btn-primary" ng-click="logOut()">Log Out</button>
+        
+        
+    </div>
+    <div>
+    	
+    </div>
