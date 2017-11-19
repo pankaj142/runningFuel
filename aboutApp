@@ -1,0 +1,8 @@
+
+#how to run the app?
+
+1) first clone the repository
+2) npm start
+3) start mongodb server using command "mongod"
+4) start node server using command "node server"
+5) go to browser and open "locahost:3000"
