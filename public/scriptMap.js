@@ -16,7 +16,7 @@ var map;
 
                         infowindow.setPosition(pos);
                         setTimeout(400000)
-                        infowindow.setContent('Hey Vaibhav we found location.');
+                        infowindow.setContent('Hey, we found Petrol Pumps near to you.');
                         infowindow.open(map);
                         map.setCenter(pos);
                     }, function () {

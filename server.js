@@ -18,7 +18,7 @@ var UserRegSchema = mongoose.Schema({
     licenceNumber:Number,
     password:String
     
-},{collection:'userRegistration'}  // it will force db to save this model as collection called as 'post'
+},{collection:'userRegistration'}  // it will force db to save this model as collection called as 'userRegistration'
 );
 
 var RequestSchema = mongoose.Schema({
@@ -30,14 +30,14 @@ var RequestSchema = mongoose.Schema({
     userId:String,
     username:String
     
-},{collection:'Requests'}  // it will force db to save this model as collection called as 'post'
+},{collection:'Requests'}  // it will force db to save this model as collection called as 'Requests'
 );
 
 var ProviderLoginSchema = mongoose.Schema({
     email:String,
     password:String
     
-},{collection:'providerLoginData'}  // it will force db to save this model as collection called as 'post'
+},{collection:'providerLoginData'}  // it will force db to save this model as collection called as 'providerLoginData'
 );
 
 var UserRegModel = mongoose.model('UserRegModel', UserRegSchema);
@@ -56,18 +56,11 @@ app.get('/api/provider/reguestlist/:data',fetchRequests)
 
 
 
-
-app.get('/api/blogpost', getAllPost);
-app.post('/api/blogpost', createPost);
-app.delete('/api/blogpost/:id', deletePost);
-app.get('/api/blogpost/:id', getPostById);
-app.put('/api/blogpost/:id', updatePost);
-
 function fetchRequests(req,res){
     var data=req.params.data;
 
-    console.log(req.params.data);
-    console.log(req.params.data.split("zzzz"));
+    //console.log(req.params.data);
+    //console.log(req.params.data.split("zzzz"));
     var userLoginData=req.params.data.split("zzzz");
     RequestModel
         .find({petrolPumbAddr:userLoginData[1]})
@@ -84,7 +77,7 @@ function fetchRequests(req,res){
 
 function providerLogin(req,res){
     var data = req.body;
-    console.log(data); 
+    //console.log(data); 
     ProviderLoginModel
         .create(data)
         .then(
@@ -99,7 +92,7 @@ function providerLogin(req,res){
 
 function storeRequests(req,res){
     var request = req.body;
-    console.log(request); 
+    //console.log(request); 
     RequestModel
         .create(request)
         .then(
@@ -133,8 +126,8 @@ function getUserData(req,res){
 
 function userLogin(req,res){
     //var email=req.params.data;
-    console.log(req.params.data);
-    console.log(req.params.data.split("yyyyy"));
+    //console.log(req.params.data);
+    //console.log(req.params.data.split("yyyyy"));
     var userLoginData=req.params.data.split("yyyyy");
     UserRegModel
         .find({email:userLoginData[0],password:userLoginData[1]})
@@ -154,7 +147,7 @@ function userLogin(req,res){
 }
 function userRegister(req,res){
     var data = req.body;
-    console.log(data); 
+    //console.log(data); 
     UserRegModel
         .create(data)
         .then(
@@ -230,7 +223,7 @@ function getAllPost(req,res){
 
 function createPost(req, res){
     var post = req.body;
-    console.log(post); 
+    //console.log(post); 
     PostModel
         .create(post)
         .then(
@@ -243,4 +236,4 @@ function createPost(req, res){
         );
 }
 
-app.listen(3000);
+app.listen(3000,console.log("server is running on port 3000."));

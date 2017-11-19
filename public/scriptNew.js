@@ -1,37 +1,25 @@
-// script.js
-
-    // create the module and name it scotchApp
-        // also include ngRoute for all our routing needs
     var app = angular.module('myApp', ['ngRoute']);
 
 
     // configure our routes
     app.config(function($routeProvider) {
         $routeProvider
-
             // route for the home page
-            
              .when('/home', {
                 templateUrl : 'pages/home.html',
                 controller  : 'mainController'
             })
-
              .when('/testpage', {
                 templateUrl : 'pages/testpage.html'
             })
-		  
             .when('/register', {
                 templateUrl : 'pages/registration.html',
                 controller  : 'registrationController'
             })
-
-            
             .when('/login', {
                 templateUrl : 'pages/login.html',
                 controller  : 'loginController'
             })
-			
-
             // route for the about page
             .when('/about', {
                 templateUrl : 'pages/about.html',
@@ -115,15 +103,13 @@
     });
 
     app.controller('contactController', function($scope) {
-        $scope.message = 'Contact us! JK. This is just a demo.';
+        $scope.message = 'Its contact page';
     });
 
      	app.controller('registrationController',function($scope,$http,$location)
      	{
- 		console.log("hey hi from controller")
- 		 		
+ 		//console.log("hey hi from controller")
         //console.log(email)
- 		
  		//console.log(regUserInfo)
  		$scope.register =function(){
  			var userName=document.getElementById('username').value;
@@ -142,15 +128,13 @@
 	 			password:password
  			}
 
- 			console.log('hello')
- 			console.log(regUserInfo)
+ 			//console.log(regUserInfo)
 
 	        $http
 	            .post('/api/register', regUserInfo)
 	            .then(function(){
 	            	console.log("user reg data is send to server");
 	            });
-	  
  		}
 	
  	})
@@ -159,7 +143,6 @@
      		$scope.login= function(){
      			var email= document.getElementById('email').value;
      			var password =document.getElementById('password').value;
-
      			var userCredentials={
      				email:email,
      				password:password
@@ -187,7 +170,6 @@
      		}
      	})
 
-
      	app.controller("getPetrolController",function($scope,$rootScope,$location){
      		$scope.message="hey hello";
      		$scope.logOut= function(){
@@ -202,7 +184,6 @@
      			//window.location.href="/pages/mapdetail.html";
      			window.open('/pages/mapdetail.html', '_blank');
      			//console.log(localStorage.getItem("details111"));
-
      			//console.log(JSON.stringify(localStorage.getItem("details111")));
      			var arr =JSON.stringify(localStorage.getItem("details111")).split("**");
      			//console.log(arr.constructor.name);
@@ -221,12 +202,12 @@
      				console.log("address----"+addr.replace(/\S+/,''));
      				$scope.petrolPumbs.push({name:name.replace(",", "").replace('\"', ""),addr: addr.replace('\"', "")})
      			}
-     			console.log($scope.petrolPumbs)
+     			//console.log($scope.petrolPumbs)
      			//var brr=arr.split(";,");
      			//console.log(brr)
      		}
      		$scope.detail=function(petrolPumpDetail){
-     			console.log(petrolPumpDetail)
+     			//console.log(petrolPumpDetail)
      			$rootScope.petrolDetail=petrolPumpDetail;
      			$location.path("/petrolpumpdetail")
      		}
@@ -234,8 +215,8 @@
 
      	app.controller("petrolPumpDetailController", function($scope,$http){
      		$scope.buyPetrol =function(data){
-     			console.log('detail',data)
-     			console.log("you will get petrol in 15 minutes")
+     			//console.log('detail',data)
+     			//console.log("you will get petrol in 15 minutes")
      			var info={
      				userId:localStorage.getItem("id"),
      			    username:localStorage.getItem("username"),
@@ -245,16 +226,12 @@
      			    petrolPumpName:data.name,
      			    petrolPumbAddr:data.addr
      			}
-
-     			console.log(info)
-     			
+     			//console.log(info)
      			$http
 		            .post('/api/requestData', info)
 		            .then(function(response){
 		            	console.log(response) 
 		            });
-		           
-
      		}
      	})
      	app.controller("mapDetailController",function($scope){
@@ -281,15 +258,13 @@
                 email:email,
                 password:password
             }
-
-            console.log(providerLoginData)
-
+            //console.log(providerLoginData)
             $http
                 .post('/api/provider/login', providerLoginData)
                 .then(function(){
                     //console.log(response)
                     $location.path('/providerlist');
-                    console.log("user providerLoginData data is send to server");
+                    //console.log("user providerLoginData data is send to server");
                     localStorage.setItem("providerEmail",providerLoginData.email)    
                 });
 
@@ -302,18 +277,15 @@
         })
 
         app.controller("providerListController",function($scope,$http,$rootScope){
-            
             var providerEmail=localStorage.getItem("providerEmail")
             var data=providerEmail+"zzzz"+"Survey No. - 274, Baner Road, Near Mauli Garden, Pune";
             $scope.getList= function(){
                 $http
                     .get('api/provider/reguestlist/'+data)
                     .then(function(response){
-                        console.log(response.data)
+                        //console.log(response.data)
                         $rootScope.requestList=response.data;
                         //console.log(response.data[0])
                     })
-
             }
-           
         })
