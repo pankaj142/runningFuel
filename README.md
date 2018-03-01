@@ -1,5 +1,4 @@
 # runningFuel app using MEAN stack
-
 A service that allow user to find petrol/gas fuel in fail.
 
 Suppose if you are driving a vehicle and fuel got finished and you are away from petrol pumps/gas station. Then how will you get the fuel. We have try to tackle this issue. By using this Web App you can find fuel providers near you and request provider to get petrol to your place.
